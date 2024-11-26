@@ -91,20 +91,22 @@
     </div>
 
     <script>
-        function encryptWord() {
-            const word = document.getElementById('word').value.toLowerCase();
-            const key = parseInt(document.getElementById('key').value);
-            const alphabet = "abcdefghijklmnopqrstuvwxyz";
-            let cipheredWord = "";
+    function encryptWord() {
+        // Remove spaces from the input word
+        const word = document.getElementById('word').value.toLowerCase().replace(/\s+/g, '');
+        const key = parseInt(document.getElementById('key').value);
+        const alphabet = "abcdefghijklmnopqrstuvwxyz";
+        let cipheredWord = "";
 
-            for (let char of word) {
-                const newPos = (alphabet.indexOf(char) + key) % 26;
-                const newChar = alphabet[newPos].toUpperCase();
-                cipheredWord += newChar;
-            }
-
-            document.getElementById('result').innerText = `Ciphered Word: ${cipheredWord}`;
+        for (let char of word) {
+            const newPos = (alphabet.indexOf(char) + key) % 26;
+            const newChar = alphabet[newPos].toUpperCase();
+            cipheredWord += newChar;
         }
-    </script>
+
+        document.getElementById('result').innerText = `Ciphered Word: ${cipheredWord}`;
+    }
+</script>
+
 </body>
 </html>
