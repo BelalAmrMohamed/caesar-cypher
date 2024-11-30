@@ -92,21 +92,27 @@
 
     <script>
     function encryptWord() {
-        // Remove spaces from the input word
-        const word = document.getElementById('word').value.toLowerCase().replace(/\s+/g, '');
+        const word = document.getElementById('word').value;
         const key = parseInt(document.getElementById('key').value);
         const alphabet = "abcdefghijklmnopqrstuvwxyz";
         let cipheredWord = "";
 
-        for (let char of word) {
-            const newPos = (alphabet.indexOf(char) + key) % 26;
-            const newChar = alphabet[newPos].toUpperCase();
-            cipheredWord += newChar;
+        for (let i = 0; i < word.length; i++) {
+            const char = word[i];
+            const lowerChar = char.toLowerCase();
+            
+            if (alphabet.includes(lowerChar)) {
+                const newPos = (alphabet.indexOf(lowerChar) + key) % 26;
+                const newChar = alphabet[newPos];
+                cipheredWord += char === char.toUpperCase() ? newChar.toUpperCase() : newChar;
+            } else {
+                cipheredWord += char; // Preserve non-alphabet characters
+            }
         }
 
         document.getElementById('result').innerText = `Ciphered Word: ${cipheredWord}`;
     }
-</script>
+    </script>
 
 </body>
 </html>
