@@ -1,138 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Caesar Cipher</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+    <link rel="manifest" href="site.webmanifest" />
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(to right, #4facfe, #00f2fe);
-            color: #fff;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-        }
-        .container {
-            text-align: center;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-        }
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-        form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        label {
-            margin-top: 10px;
-            font-size: 1.2rem;
-        }
-        input[type="text"],
-        input[type="number"] {
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            margin-top: 10px;
-            font-size: 1rem;
-            width: 80%;
-            max-width: 300px;
-        }
-        button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            background-color: #4facfe;
-            color: #fff;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: 0.3s ease;
-        }
-        button:hover {
-            background-color: #007acc;
-        }
-        .result {
-            margin-top: 20px;
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-        .footer {
-            margin-top: 20px;
-            font-size: 1rem;
-            font-weight: bold;
-            color: #f0f0f0;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(to right, #4facfe, #00f2fe);
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+      .container {
+        text-align: center;
+        background: rgba(0, 0, 0, 0.5);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+      }
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      label {
+        margin-top: 10px;
+        font-size: 1.2rem;
+      }
+      input[type="text"],
+      input[type="number"] {
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        margin-top: 10px;
+        font-size: 1rem;
+        width: 80%;
+        max-width: 300px;
+      }
+      button {
+        margin-top: 20px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #4facfe;
+        color: #fff;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: 0.3s ease;
+      }
+      button:hover {
+        background-color: #007acc;
+      }
+      .result {
+        margin-top: 20px;
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+      .footer {
+        margin-top: 20px;
+        font-size: 1rem;
+        font-weight: bold;
+        color: #f0f0f0;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <h1>Caesar Cipher</h1>
-        <form id="cipherForm">
-            <label for="word">Enter a Word:</label>
-            <input type="text" id="word" required>
+      <h1>Caesar Cipher</h1>
+      <form id="cipherForm">
+        <label for="word">Enter a Word:</label>
+        <input type="text" id="word" required />
 
-            <label for="key">Enter a Key:</label>
-            <input type="number" id="key" required>
+        <label for="key">Enter a Key:</label>
+        <input type="number" id="key" required />
 
-            <button type="button" onclick="encryptWord()">Encrypt</button>
-            <button type="button" onclick="decryptWord()">Decrypt</button>
-        </form>
-        <div class="result" id="result"></div>
-        <div class="footer">Developed by Belal Amr</div>
+        <button type="button" onclick="encryptWord()">Encrypt</button>
+        <button type="button" onclick="decryptWord()">Decrypt</button>
+      </form>
+      <div class="result" id="result"></div>
+      <div class="footer">Developed by Belal Amr</div>
     </div>
 
     <script>
-    const alphabet = "abcdefghijklmnopqrstuvwxyz";
+      const alphabet = "abcdefghijklmnopqrstuvwxyz";
 
-    function encryptWord() {
-        let word = document.getElementById('word').value;
-        const key = parseInt(document.getElementById('key').value);
-        
+      function encryptWord() {
+        let word = document.getElementById("word").value;
+        const key = parseInt(document.getElementById("key").value);
+
         // Remove any non-alphabet characters and convert everything to uppercase
-        word = word.replace(/[^a-zA-Z]/g, '').toUpperCase();
-        
+        word = word.replace(/[^a-zA-Z]/g, "").toUpperCase();
+
         const cipheredWord = transformWord(word, key);
-        document.getElementById('result').innerText = `Ciphered Word: ${cipheredWord}`;
-    }
+        document.getElementById(
+          "result"
+        ).innerText = `Ciphered Word: ${cipheredWord}`;
+      }
 
-    function decryptWord() {
-        let word = document.getElementById('word').value;
-        const key = parseInt(document.getElementById('key').value);
-        
+      function decryptWord() {
+        let word = document.getElementById("word").value;
+        const key = parseInt(document.getElementById("key").value);
+
         // Remove any non-alphabet characters and convert everything to uppercase
-        word = word.replace(/[^a-zA-Z]/g, '').toUpperCase();
-        
-        const decipheredWord = transformWord(word, -key);
-        document.getElementById('result').innerText = `Deciphered Word: ${decipheredWord}`;
-    }
+        word = word.replace(/[^a-zA-Z]/g, "").toUpperCase();
 
-    function transformWord(word, shift) {
+        const decipheredWord = transformWord(word, -key);
+        document.getElementById(
+          "result"
+        ).innerText = `Deciphered Word: ${decipheredWord}`;
+      }
+
+      function transformWord(word, shift) {
         let result = "";
 
         for (let i = 0; i < word.length; i++) {
-            const char = word[i];
-            const lowerChar = char.toLowerCase();
+          const char = word[i];
+          const lowerChar = char.toLowerCase();
 
-            if (alphabet.includes(lowerChar)) {
-                const oldPos = alphabet.indexOf(lowerChar);
-                const newPos = (oldPos + shift + 26) % 26; // Add 26 to handle negative shifts
-                const newChar = alphabet[newPos];
-                result += newChar.toUpperCase(); // Ensure the output is uppercase
-            }
+          if (alphabet.includes(lowerChar)) {
+            const oldPos = alphabet.indexOf(lowerChar);
+            const newPos = (oldPos + shift + 26) % 26; // Add 26 to handle negative shifts
+            const newChar = alphabet[newPos];
+            result += newChar.toUpperCase(); // Ensure the output is uppercase
+          }
         }
 
         return result;
-    }
+      }
     </script>
-</body>
+  </body>
 </html>
